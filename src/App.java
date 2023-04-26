@@ -2,6 +2,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -12,9 +13,16 @@ public class App {
         // Crypto c = new NoBlockCypher(bw, aes);
         Crypto c = new CBC(bw, aes, "ef");
 
-        Path plainTextPath = Paths.get("output/plainText.txt");
-        Path cypherPath = Paths.get("output/cypherText.txt");
-        Path decypherPath = Paths.get("output/decrypherText.txt");
+        Path classPath = null;
+        try {
+            classPath = Paths.get(App.class.getResource("/").toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        
+        Path plainTextPath = classPath.resolve("output/plainText.txt");
+        Path cypherPath = classPath.resolve("output/cypherText.txt");
+        Path decypherPath = classPath.resolve("output/decrypherText.txt");
         String secretKey = "vg";
 
         Charset encoding = StandardCharsets.UTF_8;
