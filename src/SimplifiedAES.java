@@ -1,20 +1,5 @@
 public class SimplifiedAES {
 
-    // Example code.
-    public static void main(String[] args) {
-        SimplifiedAES s = new SimplifiedAES();
-        String str = "1010111000100100";
-        String k = "1100101011110001";
-        Pair<String, String> ct = s.AES16(str, k);
-        System.out.println("Encrypted text: " + ct.first);
-        System.out.println("Last Key: " + ct.second);
-        Pair<String, String> pt = s.invAES16(ct.first, ct.second);
-        System.out.println();
-        System.out.println("Decrypted text: " + pt.first);
-        System.out.println("First Key: " + pt.second);
-    }
-
-
     private final String[][] SBOX = {
             { "0110", "1011", "0000", "0100" },
             { "0111", "1110", "0010", "1111" },
